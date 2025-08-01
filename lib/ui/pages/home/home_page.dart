@@ -28,6 +28,9 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         appBar: AppBar(
           title: TextFormField(
+            onFieldSubmitted: (value) {
+              //
+            },
             maxLines: 1,
             controller: textEditingController,
             textInputAction: TextInputAction.done,
