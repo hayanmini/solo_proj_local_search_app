@@ -31,12 +31,16 @@ class _HomePageState extends State<HomePage> {
             maxLines: 1,
             controller: textEditingController,
             textInputAction: TextInputAction.done,
+            cursorColor: Colors.grey,
             decoration: InputDecoration(
+              hintText: "주소를 입력하세요.",
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black),
+              ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(color: Colors.pink),
               ),
-              hintText: "주소를 입력하세요.",
             ),
             style: TextStyle(fontSize: 13),
           ),
