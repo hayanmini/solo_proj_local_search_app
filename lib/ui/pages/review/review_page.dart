@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_search_app/ui/pages/review/widgets/review_list.dart';
+import 'package:flutter_local_search_app/ui/pages/review/widgets/review_write.dart';
 
 class ReviewPage extends StatefulWidget {
   @override
@@ -8,6 +10,15 @@ class ReviewPage extends StatefulWidget {
 class _ReviewPageState extends State<ReviewPage> {
   @override
   Widget build(BuildContext context) {
-    return Text("ReviewPage");
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        appBar: AppBar(title: Text("local", style: TextStyle(fontSize: 24))),
+        body: ReviewList(),
+        bottomSheet: ReviewWrite(),
+      ),
+    );
   }
 }
