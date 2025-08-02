@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_search_app/ui/pages/home/widgets/home_list.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomePage extends StatefulWidget {
+import 'home_view_model.dart';
+
+class HomePage extends ConsumerStatefulWidget {
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends ConsumerState<HomePage> {
   TextEditingController textEditingController = TextEditingController();
 
   @override
@@ -29,7 +32,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: TextFormField(
             onFieldSubmitted: (value) {
-              //
+              ref.read(homeViewModelProvider.notifier).searchList(value);
             },
             maxLines: 1,
             controller: textEditingController,

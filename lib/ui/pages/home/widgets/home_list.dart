@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_search_app/ui/pages/home/home_view_model.dart';
 import 'package:flutter_local_search_app/ui/pages/review/review_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeList extends StatelessWidget {
+class HomeList extends ConsumerStatefulWidget {
+  @override
+  ConsumerState<HomeList> createState() => _HomeListState();
+}
+
+class _HomeListState extends ConsumerState<HomeList> {
   @override
   Widget build(BuildContext context) {
+    var provider = ref.watch(homeViewModelProvider);
     return Padding(
       padding: const EdgeInsets.all(15),
       child: ListView.separated(
-        itemCount: 5,
+        itemCount: provider.length,
         separatorBuilder: (context, index) => SizedBox(height: 12),
         itemBuilder: (context, index) {
+          var location = provider[index];
           return GestureDetector(
             onTap: () {
               Navigator.push(
@@ -32,14 +41,20 @@ class HomeList extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "title",
+                      location.title ?? "",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
                     ),
-                    Text("category", style: TextStyle(fontSize: 14)),
-                    Text("roadAddress", style: TextStyle(fontSize: 14)),
+                    Text(
+                      location.category ?? "",
+                      style: TextStyle(fontSize: 14),
+                    ),
+                    Text(
+                      location.roadAddress ?? "",
+                      style: TextStyle(fontSize: 14),
+                    ),
                   ],
                 ),
               ),
