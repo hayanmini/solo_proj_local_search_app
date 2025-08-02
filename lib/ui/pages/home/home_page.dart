@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_search_app/ui/pages/home/widgets/home_list.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,7 +32,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       child: Scaffold(
         appBar: AppBar(
           title: TextFormField(
-            onFieldSubmitted: (value) {
+            onFieldSubmitted: (value) async {
               ref.read(homeViewModelProvider.notifier).searchList(value);
             },
             maxLines: 1,
