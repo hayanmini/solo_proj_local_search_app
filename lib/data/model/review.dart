@@ -27,6 +27,6 @@ class Review {
     "content": content,
     "mapx": mapx,
     "mapy": mapy,
-    "createdAt": createdAt,
+    "createdAt": createdAt.toString(),
   };
 }
