@@ -8,8 +8,8 @@ class HomeViewModel extends AutoDisposeNotifier<List<Location>> {
     return [];
   }
 
-  Future searchList(String text) async {
-    var repository = LocationRepository();
+  Future<void> searchList(String text) async {
+    final repository = LocationRepository();
     state = await repository.findByName(text);
   }
 }

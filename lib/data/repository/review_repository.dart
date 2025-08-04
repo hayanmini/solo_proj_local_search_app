@@ -1,12 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_local_search_app/data/model/review.dart';
 
 class ReviewRepository {
   // Reviews 불러오기
-  Future<List<Review>> getAll() async {
+  Future<List<Review>> getAll(String query) async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    final collectionRef = firestore.collection("reviews");
+    final collectionRef = firestore.collection(query);
     final snapshot = await collectionRef.get();
     final documentSnapshot = snapshot.docs;
     final iterable = documentSnapshot.map((e) {
@@ -26,14 +25,14 @@ class ReviewRepository {
   }) async {
     try {
       FirebaseFirestore firestore = FirebaseFirestore.instance;
-      final collectionRef = firestore.collection("reviews");
+      final collectionRef = firestore.collection("${mapx}_$mapy");
       final docRef = collectionRef.doc();
 
       final map = {
         "content": content,
         "mapx": mapx,
         "mapy": mapy,
-        "createdAt": createdAt,
+        "createdAt": createdAt.toString(),
       };
 
       await docRef.set(map);

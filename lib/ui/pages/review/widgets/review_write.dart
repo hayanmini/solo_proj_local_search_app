@@ -1,6 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_search_app/data/repository/review_repository.dart';
+import 'package:flutter_local_search_app/ui/pages/review/review_view_model.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ReviewWrite extends StatelessWidget {
+class ReviewWrite extends ConsumerStatefulWidget {
+  final String id;
+  final double mapX;
+  final double mapY;
+
+  const ReviewWrite({
+    super.key,
+    required this.id,
+    required this.mapX,
+    required this.mapY,
+  });
+
+  @override
+  ConsumerState<ReviewWrite> createState() => _ReviewWriteState();
+}
+
+class _ReviewWriteState extends ConsumerState<ReviewWrite> {
+  TextEditingController reviewTextEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -12,7 +33,21 @@ class ReviewWrite extends StatelessWidget {
         height: 110,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
-          child: TextFormField(),
+          child: TextFormField(
+            controller: reviewTextEditingController,
+            onFieldSubmitted: (value) {
+              var review = ReviewRepository();
+              review.add(
+                content: value,
+                mapx: widget.mapX,
+                mapy: widget.mapY,
+                createdAt: DateTime.now(),
+              );
+              ref
+                  .read(reviewViewModelProvider(widget.id).notifier)
+                  .reviewList(widget.id);
+            },
+          ),
         ),
       ),
     );

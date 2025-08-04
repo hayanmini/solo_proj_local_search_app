@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_search_app/data/model/location.dart';
 import 'package:flutter_local_search_app/ui/pages/home/home_view_model.dart';
 import 'package:flutter_local_search_app/ui/pages/review/review_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,7 +24,14 @@ class _HomeListState extends ConsumerState<HomeList> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ReviewPage()),
+                MaterialPageRoute(
+                  builder: (context) => ReviewPage(
+                    id: "${location.mapx}_${location.mapy}",
+                    title: location.title!,
+                    mapX: location.mapx!,
+                    mapY: location.mapy!,
+                  ),
+                ),
               );
             },
             child: Container(

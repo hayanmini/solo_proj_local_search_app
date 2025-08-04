@@ -2,8 +2,8 @@ class Location {
   String? title;
   String? category;
   String? roadAddress;
-  int? mapx;
-  int? mapy;
+  double? mapx;
+  double? mapy;
 
   Location({this.title, this.category, this.roadAddress, this.mapx, this.mapy});
 
@@ -11,7 +11,7 @@ class Location {
     title = json["title"];
     category = json["category"];
     roadAddress = json["roadAddress"];
-    mapx = int.tryParse(json["mapx"]) ?? -1;
-    mapy = int.tryParse(json["mapy"]) ?? -1;
+    mapx = double.tryParse(json["mapx"]) ?? -1;
+    mapy = double.tryParse(json["mapy"]) ?? -1;
   }
 }
