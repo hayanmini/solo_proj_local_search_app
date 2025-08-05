@@ -20,6 +20,7 @@ class ReviewWrite extends ConsumerStatefulWidget {
 }
 
 class _ReviewWriteState extends ConsumerState<ReviewWrite> {
+  // 리뷰 텍스트 필드 텍스트 컨트롤러
   TextEditingController reviewTextEditingController = TextEditingController();
 
   @override
@@ -36,6 +37,7 @@ class _ReviewWriteState extends ConsumerState<ReviewWrite> {
           child: TextFormField(
             controller: reviewTextEditingController,
             onFieldSubmitted: (value) {
+              // 리뷰 등록
               var review = ReviewRepository();
               review.add(
                 content: value,
@@ -43,6 +45,7 @@ class _ReviewWriteState extends ConsumerState<ReviewWrite> {
                 mapy: widget.mapY,
                 createdAt: DateTime.now(),
               );
+              // 리뷰 리스트 출력
               ref
                   .read(reviewViewModelProvider(widget.id).notifier)
                   .reviewList(widget.id);

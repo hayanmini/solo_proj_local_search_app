@@ -16,13 +16,14 @@ class ReviewRepository {
     return list;
   }
 
-  // Review 작성
+  // Review 등록
   Future<bool> add({
     required String content,
     required double mapx,
     required double mapy,
     required DateTime createdAt,
   }) async {
+    // 통신 오류 처리
     try {
       FirebaseFirestore firestore = FirebaseFirestore.instance;
       final collectionRef = firestore.collection("${mapx}_$mapy");
@@ -43,17 +44,3 @@ class ReviewRepository {
     }
   }
 }
-// final docId = 'asdasd';
-              // var abc = await FirebaseFirestore.instance
-              //     .collection('0_0')
-              //     .get();
-
-              // for (var doc in abc.docs) {
-              //   print(doc.data());
-              // }
-
-              // var colletion = FirebaseFirestore.instance.collection("0_1");
-              // var docRef = colletion.doc();
-              // await docRef.set({});
-
-              //ref.read(homeViewModelProvider.notifier).searchList(value);

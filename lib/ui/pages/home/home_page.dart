@@ -18,15 +18,6 @@ class _HomePageState extends ConsumerState<HomePage> {
     super.dispose();
   }
 
-  // void onSearch(String text) {
-  //   text = textEditingController.text;
-  //   setState(() {});
-  // }
-
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

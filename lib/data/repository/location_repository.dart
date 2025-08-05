@@ -10,7 +10,9 @@ class LocationRepository {
   );
 
   Future<List<Location>> findByName(String query) async {
+    // 오류 처리
     try {
+      // 네이버 검색 API 연동
       final response = await _client.get(
         "https://openapi.naver.com/v1/search/local.json",
         queryParameters: {"query": query, "display": 5},
@@ -21,6 +23,7 @@ class LocationRepository {
           },
         ),
       );
+      // 성공 코드 처리
       if (response.statusCode == 200) {
         final result = <Location>[];
         final items = response.data["items"];

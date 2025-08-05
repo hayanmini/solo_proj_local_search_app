@@ -12,15 +12,19 @@ class HomeList extends ConsumerStatefulWidget {
 class _HomeListState extends ConsumerState<HomeList> {
   @override
   Widget build(BuildContext context) {
-    var provider = ref.watch(homeViewModelProvider);
+    // homeViewModelProvider
+    var reviews = ref.watch(homeViewModelProvider);
+
+    // 리뷰 리스트 UI
     return Padding(
       padding: const EdgeInsets.all(15),
       child: ListView.separated(
-        itemCount: provider.length,
+        itemCount: reviews.length,
         separatorBuilder: (context, index) => SizedBox(height: 12),
         itemBuilder: (context, index) {
-          var location = provider[index];
+          var location = reviews[index];
           return GestureDetector(
+            // 터치 이벤트
             onTap: () {
               Navigator.push(
                 context,
